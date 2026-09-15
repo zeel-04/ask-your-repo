@@ -10,15 +10,7 @@ MCP server for reading docs from your private GitHub repos.
 
 ## Setup
 
-`.env`:
-
-```
-GITHUB_TOKEN=...          # required
-MCP_TOKEN_SHA256=...      # required, sha256 of the client token
-DEFAULT_BRANCH=...        # optional, defaults to repo's default branch
-DOCS_FOLDER_PATH=...      # optional, defaults to whole repo
-MAX_FILE_TOKENS=100000    # optional
-```
+Copy [`.env.example`](.env.example) to `.env` and fill it in.
 
 Generate a client token and append its hash to `.env` (keep the printed token; it is not stored):
 
@@ -30,6 +22,13 @@ uv run python -c "import hashlib,secrets; t=secrets.token_urlsafe(32); open('.en
 
 ```
 uv run python main.py
+```
+
+Or with Docker:
+
+```
+docker build -t ask-your-repo .
+docker run --env-file .env -p 8000:8000 ask-your-repo
 ```
 
 ## Connect

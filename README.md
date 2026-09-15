@@ -2,6 +2,10 @@
 
 MCP server for reading docs from your private GitHub repos.
 
+![Docs from private repos, kept current by OpenWiki on each release, served by this MCP server to ChatGPT and Claude users](images/arch.png)
+
+The OpenWiki step (updating each repo's docs on production release) is set up separately; this repo is only the MCP server.
+
 ## Tools
 
 - `list_repos` — private repos you can access

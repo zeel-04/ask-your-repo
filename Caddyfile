@@ -1,0 +1,4 @@
+# No access log: clients authenticate with ?token= in the URL.
+ask-any-repo.getcruisecontrol.com {
+	reverse_proxy app:8000
+}

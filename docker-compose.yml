@@ -1,0 +1,36 @@
+services:
+  app:
+    image: mahantsolutions/global:${ImageTag}
+    env_file: .env
+    expose:
+      - "8000"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "1"
+
+  caddy:
+    image: caddy:2
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "1"
+
+volumes:
+  # Holds the TLS certs; losing it re-requests certs and can hit Let's Encrypt rate limits.
+  caddy_data:
+  caddy_config:

@@ -46,3 +46,17 @@ http://127.0.0.1:8000/mcp?token=<client token>
 ```
 uv run python -m unittest
 ```
+
+## Deployment
+
+`.github/workflows/ci-cd.yml` runs tests on every PR. On push to `main` it builds and pushes
+`mahantsolutions/global:ask-your-repo-<sha>`, then deploys over SSH to the `ask-your-repo-prod` droplet,
+where `docker-compose.yml` runs the app behind Caddy (automatic HTTPS) at
+`https://ask-any-repo.getcruisecontrol.com/mcp?token=<client token>`. A `v*` tag re-tags that commit's
+image as `ask-your-repo-<tag>`.
+
+Repository secrets: `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `SSH_HOST`, `SSH_USER`, `SSH_PRIVATE_KEY`,
+`SSH_KNOWN_HOSTS`, `APP_GITHUB_TOKEN` (becomes `GITHUB_TOKEN` in the app), `MCP_TOKEN_SHA256`, `SLACK_BOT_TOKEN`.
+Optional repository variables: `DEFAULT_BRANCH`, `DOCS_FOLDER_PATH`, `MAX_FILE_TOKENS`.
+
+Roll back by re-running an earlier successful run of the workflow from the Actions tab.

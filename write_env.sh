@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+: "${APP_GITHUB_TOKEN:?}" "${MCP_TOKEN_SHA256:?}" "${ImageTag:?}"
+
+umask 077
+cat > .env <<EOF
+GITHUB_TOKEN=${APP_GITHUB_TOKEN}
+MCP_TOKEN_SHA256=${MCP_TOKEN_SHA256}
+DEFAULT_BRANCH=${DEFAULT_BRANCH:-}
+DOCS_FOLDER_PATH=${DOCS_FOLDER_PATH:-}
+MAX_FILE_TOKENS=${MAX_FILE_TOKENS:-100000}
+ImageTag=${ImageTag}
+EOF

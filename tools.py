@@ -74,7 +74,7 @@ def read_repo_file(file_id: str) -> str:
     r = _get_private_repo(repo)
     f = r.get_contents(path, ref=_branch(r, branch))
     if isinstance(f, list):
-        raise ValueError(f"{file_id} is a directory")
+        raise ValueError(f"{file_id} is a directory")  # noqa: TRY004
     # GitHub follows symlinks and returns the target file, whose path differs from the one asked for.
     if f.type != "file" or f.path != path:
         raise ValueError(f"{file_id} is not a regular file")

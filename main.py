@@ -7,6 +7,8 @@ from fastmcp import FastMCP
 from fastmcp.exceptions import ToolError
 from fastmcp.server.dependencies import get_http_request
 from fastmcp.server.middleware import Middleware
+from starlette.requests import Request
+from starlette.responses import PlainTextResponse
 
 from tools import list_repo_contents, list_repos, read_repo_file
 
@@ -30,6 +32,11 @@ mcp = FastMCP("ask-your-repo")
 mcp.add_middleware(TokenAuthMiddleware())
 for tool in (list_repos, list_repo_contents, read_repo_file):
     mcp.add_tool(tool)
+
+
+@mcp.custom_route("/health", methods=["GET"])
+async def health(request: Request) -> PlainTextResponse:
+    return PlainTextResponse("OK")
 
 
 if __name__ == "__main__":

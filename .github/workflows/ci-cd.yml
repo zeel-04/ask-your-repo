@@ -77,6 +77,7 @@ jobs:
           DEFAULT_BRANCH: ${{ vars.DEFAULT_BRANCH }}
           DOCS_FOLDER_PATH: ${{ vars.DOCS_FOLDER_PATH }}
           MAX_FILE_TOKENS: ${{ vars.MAX_FILE_TOKENS }}
+          MCP_INSTRUCTIONS: ${{ vars.MCP_INSTRUCTIONS }}
           ImageTag: ask-your-repo-${{ github.sha }}
         run: bash write_env.sh
 

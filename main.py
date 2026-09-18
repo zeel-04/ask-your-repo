@@ -28,7 +28,7 @@ class TokenAuthMiddleware(Middleware):
         return await call_next(context)
 
 
-mcp = FastMCP("ask-your-repo")
+mcp = FastMCP("ask-your-repo", instructions=os.getenv("MCP_INSTRUCTIONS") or None)
 mcp.add_middleware(TokenAuthMiddleware())
 for tool in (list_repos, list_repo_contents, read_repo_file):
     mcp.add_tool(tool)

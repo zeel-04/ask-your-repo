@@ -57,6 +57,6 @@ image as `ask-your-repo-<tag>`.
 
 Repository secrets: `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `SSH_HOST`, `SSH_USER`, `SSH_PRIVATE_KEY`,
 `SSH_KNOWN_HOSTS`, `APP_GITHUB_TOKEN` (becomes `GITHUB_TOKEN` in the app), `MCP_TOKEN_SHA256`, `SLACK_BOT_TOKEN`.
-Optional repository variables: `DEFAULT_BRANCH`, `DOCS_FOLDER_PATH`, `MAX_FILE_TOKENS`.
+Optional repository variables: `DEFAULT_BRANCH`, `DOCS_FOLDER_PATH`, `MAX_FILE_TOKENS`, `MCP_INSTRUCTIONS`.
 
 Roll back by re-running an earlier successful run of the workflow from the Actions tab.
